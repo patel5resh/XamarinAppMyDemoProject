@@ -15,7 +15,7 @@
 
         <ResourceDictionary>
             <OnPlatform x:Key="IconFontFamily" x:TypeArguments="x:String">
-                <On Platform="Android">fontawesome-webfont.ttf#fontawesome-webfont</On>
+                <On Platform="Android">materialdesignicons-webfont.ttf#materialdesignicons-webfont</On>
             </OnPlatform>
 
             <!--Orange-->

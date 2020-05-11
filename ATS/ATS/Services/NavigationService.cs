@@ -16,8 +16,8 @@ namespace ATS.Services
                 case "AttendanceList":
                     await App.Navigator.PushAsync(new AttendanceList());
                     break;
-                case "AddAttendancePage":
-                    await App.Navigator.PushAsync(new AddAttendancePage());
+                case "HolidayList":
+                    await App.Navigator.PushAsync(new HolidayList());
                     break;
                 case "AttendanceSetting":
                     await App.Navigator.PushAsync(new AttendanceSetting());

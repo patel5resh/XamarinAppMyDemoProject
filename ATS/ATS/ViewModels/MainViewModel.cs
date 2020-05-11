@@ -551,21 +551,21 @@ namespace ATS.ViewModels
         {
             Menu.Add(new MenuItemViewModel
             {
-                Icon = FontAwesomeFont.ClockO,
+                Icon = IconFont.Clock,
                 PageName = "AttendanceList",
                 Title = "Attendance",
             });
 
             Menu.Add(new MenuItemViewModel
             {
-                Icon = FontAwesomeFont.PlusCircle,
-                PageName = "AddAttendancePage",
-                Title = "Add",
+                Icon = IconFont.Calendar,
+                PageName = "HolidayList",
+                Title = "Holiday",
             });
 
             Menu.Add(new MenuItemViewModel
             {
-                Icon = FontAwesomeFont.Cog,
+                Icon = IconFont.Cog,
                 PageName = "AttendanceSetting",
                 Title = "Setting",
             });
