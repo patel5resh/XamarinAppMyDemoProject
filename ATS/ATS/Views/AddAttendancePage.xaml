@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Add Attendance"           
+             x:Class="ATS.Views.AddAttendancePage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <ScrollView BindingContext="{Binding NewAddAttendance}">
+        <StackLayout Padding="5">
+            <Label Text="Date" FontSize="20" HorizontalOptions="StartAndExpand"/>
+            <DatePicker Date="{Binding AttendanceDate, Mode=TwoWay}"/>
+            <Label Text="InTime" FontSize="20" HorizontalOptions="StartAndExpand"/>
+            <TimePicker Time="{Binding inTime, Mode=TwoWay}">
+                <TimePicker.Format>hh:mm tt</TimePicker.Format>
+            </TimePicker>
+            <Label Text="OutTime" FontSize="20" HorizontalOptions="StartAndExpand"/>
+            <TimePicker Time="{Binding outTime, Mode=TwoWay}">
+                <TimePicker.Format>hh:mm tt</TimePicker.Format>
+            </TimePicker>
+            <Button
+                Text="Save"
+                Command="{Binding AddNewAttendanceCommand}"
+                Style="{StaticResource PrimaryButtonStyle}"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"/>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

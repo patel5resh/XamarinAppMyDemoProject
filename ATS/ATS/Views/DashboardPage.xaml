@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             Title="Dashboard"
+             x:Class="ATS.Views.DashboardPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <!--<Label Text="Welcome to Dashboard"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />-->
+            <ScrollView>
+                <Grid>
+                    <StackLayout
+                        x:Name="mainView"
+                        Margin="5,10,5,0"
+                        Orientation="Vertical">
+                        <StackLayout
+                            Margin="15,0,15,15"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal">
+
+                            <Grid HorizontalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Frame
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Margin="0,0,0,0"
+                                    BackgroundColor="#7175D8"
+                                    CornerRadius="20"
+                                    HorizontalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Vertical">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                                FontSize="18"
+                                                Text="Total Hours"
+                                                TextColor="White" />
+                                        </StackLayout>
+                                        <StackLayout Margin="0,10,0,10">
+                                            <Label
+                                                FontSize="20"
+                                                Text="187"
+                                                TextColor="White" />
+                                            <Label
+                                                Margin="0,-5,0,0"
+                                                Text="Hours"
+                                                TextColor="White" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                                <Frame
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Margin="0,0,0,0"
+                                    BackgroundColor="#FF3336"
+                                    CornerRadius="20"
+                                    HorizontalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Vertical">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                                FontSize="18"
+                                                Text="Pending Hours"
+                                                TextColor="White" />
+                                        </StackLayout>
+                                        <StackLayout Margin="0,10,0,10">
+                                            <Label
+                                                FontSize="20"
+                                                Text="0"
+                                                TextColor="White" />
+                                            <Label
+                                                Margin="0,-5,0,0"
+                                                Text="Hours"
+                                                TextColor="White" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </StackLayout>
+                        <Frame
+                            Margin="20,0,20,20"
+                            CornerRadius="20"
+                            HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout Orientation="Horizontal">
+                                    <Label
+                                        FontSize="18"
+                                        Text="Current Month"
+                                        TextColor="Black" />
+                                </StackLayout>
+                            <StackLayout Margin="0,5,0,5">
+                                    <StackLayout Margin="5" Orientation="Horizontal">
+                                        <StackLayout>
+                                            <Grid>
+                                                <Frame
+                                                Padding="0"
+                                                BackgroundColor="Transparent"
+                                                CornerRadius="5"
+                                                IsClippedToBounds="True">
+                                                    <!--<syncfusion:SfCalendar x:Name="calendar" ViewMode="MonthView" 
+                                                                       ShowInlineEvents="True"                                                                       
+                                                                       InlineViewMode="Inline" 
+                                                                        
+                                                                       MaximumEventIndicatorCount="1" 
+                                                                       DataSource="{Binding CalendarInlineEvents}">
+                                                        <syncfusion:SfCalendar.BindingContext>
+                                                            <local:CalendarAttendenceModel/>
+                                                        </syncfusion:SfCalendar.BindingContext>
+                                                    </syncfusion:SfCalendar>-->
+                                                </Frame>
+                                            </Grid>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                    </StackLayout>
+                </Grid>
+
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

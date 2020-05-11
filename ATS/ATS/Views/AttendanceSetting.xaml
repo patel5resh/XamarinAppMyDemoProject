@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Lunch Time"
+             x:Class="ATS.Views.AttendanceSetting"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label Text="Lunch Time" FontSize="20" HorizontalOptions="StartAndExpand"/>
+            <Entry x:Name="txtLunchTime" Text="{Binding LunchTime, Mode=TwoWay}" Placeholder="HH:MM:SS" />
+            <Button x:Name="btnSumbit" Clicked="btnSumbit_Clicked" Text="Save" Style="{StaticResource PrimaryButtonStyle}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
+    xmlns:syn="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:local="clr-namespace:ATS.Behaviors"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    mc:Ignorable="d"
+    x:Class="ATS.Views.AttendanceList"
+    Title="{Binding SelectedItemCount}"
+    BackgroundColor="{DynamicResource PageBackgroundColor}"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="adds" Icon="Add.png" Command="{Binding NewAttendanceCommand}" IsDestructive="False"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:CustomConverter x:Key="EventArgs" />
+            <local:HoldingConverter x:Key="HoldEventArgs" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <StackLayout BackgroundColor="#FFFFFF" VerticalOptions="FillAndExpand" HeightRequest="130">
+                    <StackLayout BackgroundColor="#120064" HeightRequest="80">
+                        <Frame Margin="0,10,0,20" BackgroundColor="Transparent" CornerRadius="10">
+                            <yummy:PancakeView BackgroundGradientStartColor="#FF33AA" BackgroundGradientEndColor="#f7e843"
+                               BackgroundGradientAngle="45" HasShadow="True" CornerRadius="10">
+                                <StackLayout HorizontalOptions="FillAndExpand"
+                                             Orientation="Horizontal">
+                                    <StackLayout Margin="5" HorizontalOptions="FillAndExpand">
+                                        <Label HorizontalOptions="CenterAndExpand" 
+                                               Text="Select Year"                                               
+                                               TextColor="Black" />
+                                        <Picker ItemsSource="{Binding ListYears}" 
+                            ItemDisplayBinding="{Binding Value}"
+                            SelectedItem ="{Binding SelectedYear}"
+                            Margin="0,-10,0,0"
+                            HorizontalOptions="CenterAndExpand"/>
+                                    </StackLayout>
+                                    <StackLayout Margin="5" HorizontalOptions="FillAndExpand">
+                                        <Label HorizontalOptions="CenterAndExpand" 
+                                               Text="Select Month"                                               
+                                               TextColor="Black" />
+                                        <Picker ItemsSource="{Binding ListMonths}" 
+                            ItemDisplayBinding="{Binding Value}"
+                            SelectedItem ="{Binding SelectedMonth}"
+                            Margin="0,-10,0,0"
+                            HorizontalOptions="CenterAndExpand"/>
+                                    </StackLayout>
+                                    <StackLayout Margin="5" HorizontalOptions="FillAndExpand">
+                                        <Label HorizontalOptions="CenterAndExpand" 
+                                               Text="Total Time"                                              
+                                               TextColor="Black"/>
+                                        <Label Text="{Binding TotalTimeSummary}" 
+                            Margin="0,7,0,0"
+                            FontSize="15" 
+                            FontAttributes="Bold"
+                            HorizontalOptions="CenterAndExpand"
+                            TextColor="#120064" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </yummy:PancakeView>
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Frame Margin="20,0,20,10"
+                       CornerRadius="10"
+                       HorizontalOptions="FillAndExpand">
+                    <pulltoRefresh:SfPullToRefresh 
+                                x:Name="pullToRefresh" 
+                                ProgressBackgroundColor="#428BCA" 
+                                TransitionMode="Push" 
+                                IsEnabled="True"         
+                                RefreshCommand="{Binding RefreshAttendancesCommand}"
+                                IsRefreshing="{Binding IsRefreshingAttendances, Mode=TwoWay}">
+                        <pulltoRefresh:SfPullToRefresh.PullableContent>
+                            <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="20"
+                                           Text="Attendence"
+                                           TextColor="#120064"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical">
+                                    <syn:SfListView x:Name="listAttendance"  
+                                                ItemsSource="{Binding Attendances}"   
+                                                ItemTemplate="{StaticResource AttendanceItemTemplate}"    
+                                                SelectionMode="Multiple"
+                                                SelectionGesture="{Binding SelectionGesture}"
+                                                SelectionBackgroundColor="Transparent"
+                                                IsStickyHeader="True" ItemSize="70"
+                                                TapCommand="{Binding }"
+                                                HoldCommand="{Binding }"
+                                                Visual="Material">
+                                        <syn:SfListView.Behaviors>
+                                            <local:EventToCommandBehavior EventName="SelectionChanged" 
+                                                    Command="{Binding SelectionChangedCommand}"
+                                                    Converter="{StaticResource EventArgs}" />
+
+                                            <local:EventToCommandBehavior EventName="ItemHolding" 
+                                                    Command="{Binding ItemHoldingCommand}"
+                                                    Converter="{StaticResource HoldEventArgs}" />
+                                        </syn:SfListView.Behaviors>
+                                    </syn:SfListView>
+                                </StackLayout>
+                            </StackLayout>
+                        </pulltoRefresh:SfPullToRefresh.PullableContent>
+                    </pulltoRefresh:SfPullToRefresh>
+                </Frame>
+            </Grid>
+            <yummy:PancakeView Grid.Row="2" x:Name="gridVisible" HeightRequest="46" IsVisible="{Binding FooterIsVisible}" 
+                               BackgroundColor="#120064"
+                               HasShadow="True" CornerRadius="20,20,0,0"
+                               HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Margin="0,10,0,0" Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Center">
+                        <Button x:Name="allSelection" Command="{Binding AllSelectedCommand}" BackgroundColor="Transparent" ImageSource="Selected.png" HeightRequest="25" />
+                    </StackLayout>
+                    <StackLayout Margin="20,10,0,0" Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center">
+                        <Button x:Name="editSelection" IsEnabled="False" Command="{Binding Path=BindingContext.EditAttendanceCommand, Source={x:Reference listAttendance}}" CommandParameter="{Binding .}" BackgroundColor="Transparent" ImageSource="Edit.png" HeightRequest="25" />
+                    </StackLayout>
+                    <StackLayout Margin="20,10,0,0" Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalOptions="Center">
+                        <Button x:Name="deleteSelection" Command="{Binding DeleteAttendanceCommand}" BackgroundColor="Transparent" ImageSource="Delete.png" HeightRequest="25" />
+                    </StackLayout>
+                </Grid>
+            </yummy:PancakeView>
+        </Grid>
+    </ScrollView>
+</ContentPage>
