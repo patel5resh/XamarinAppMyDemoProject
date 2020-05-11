@@ -243,8 +243,8 @@ namespace ATS.ViewModels
         #region Method             
         public void CancelAllEvent()
         {
-            SelectionGesture = TouchGesture.Tap;
-            FooterIsVisible = true;          
+            SelectionGesture = TouchGesture.Hold;
+            FooterIsVisible = false;          
             for (int i = 0; i < Attendances.Count; i++)
             {
                 if (Attendances[i].IsSelected == true)
@@ -477,6 +477,7 @@ namespace ATS.ViewModels
             }
             ReloadAttendances(attendances);
             IsRefreshingAttendances = false;
+            CancelAllEvent();
         }
 
         public async void NewAttendances()

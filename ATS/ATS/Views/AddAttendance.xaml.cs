@@ -26,21 +26,6 @@ namespace ATS.Views
             }
         }
 
-        //public void EditAttendance(AttendanceInfo modelAttendance)
-        //{
-        //    AttendanceDate = modelAttendance.AttendanceDate;
-
-        //    string[] InTimeValues = modelAttendance.InTime.Split(':');
-        //    string[] OutTimeValues = modelAttendance.OutTime.Split(':');
-
-        //    TimeSpan InTime = new TimeSpan(Convert.ToInt32(InTimeValues[0]), Convert.ToInt32(InTimeValues[1]), 0);
-        //    inTime = InTime;
-
-
-        //    TimeSpan OutTime = new TimeSpan(Convert.ToInt32(OutTimeValues[0]), Convert.ToInt32(OutTimeValues[1]), 0);
-        //    outTime = OutTime;
-        //}
-
         private void EditAttendance(AttendanceInfo modelAttendance)
         {
             dpPopup.Date = modelAttendance.AttendanceDate;
@@ -107,7 +92,6 @@ namespace ATS.Views
             {
                 da.Update(model);
                 await DisplayAlert("Save", "Attendance successfully saved", "Ok");
-                //await Navigation.PushAsync(new AttendanceList());
                 await Navigation.PopPopupAsync();
                 await navigationService.Navigate("AttendanceList");
             }
