@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ATS.Views.ThemeSelectionPage"
+             Title="Change App Theme"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <StackLayout Margin="20">
+        <Picker
+            x:Name="ThemePicker"
+            Title="Select Theme"
+            SelectedIndexChanged="OnPickerSelectionChanged"
+            TextColor="#000"
+            VerticalOptions="Start" />
+
+        <Label
+            x:Name="statusLabel"
+            HorizontalOptions="Center"
+            Style="{DynamicResource SmallLabelStyle}"
+            TextColor="SlateGray"
+            VerticalOptions="Start" />
+    </StackLayout>
+</ContentPage>

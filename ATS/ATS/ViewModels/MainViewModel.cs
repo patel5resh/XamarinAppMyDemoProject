@@ -565,6 +565,13 @@ namespace ATS.ViewModels
 
             Menu.Add(new MenuItemViewModel
             {
+                Icon = IconFont.ThemeLightDark,
+                PageName = "ThemeSelectionPage",
+                Title = "Themes",
+            });
+
+            Menu.Add(new MenuItemViewModel
+            {
                 Icon = IconFont.Cog,
                 PageName = "AttendanceSetting",
                 Title = "Setting",

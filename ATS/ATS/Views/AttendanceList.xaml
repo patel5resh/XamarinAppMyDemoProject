@@ -102,8 +102,7 @@
                                                 SelectionBackgroundColor="Transparent"
                                                 IsStickyHeader="True" ItemSize="70"
                                                 TapCommand="{Binding }"
-                                                HoldCommand="{Binding }"
-                                                Visual="Material">
+                                                HoldCommand="{Binding }">
                                         <syn:SfListView.Behaviors>
                                             <local:EventToCommandBehavior EventName="SelectionChanged" 
                                                     Command="{Binding SelectionChangedCommand}"

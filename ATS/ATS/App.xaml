@@ -13,51 +13,51 @@
         <!-- Locator -->
         <infra:InstanceLocator x:Key="Locator"></infra:InstanceLocator>
 
-        <ResourceDictionary>
+        <ResourceDictionary Source="Themes/LightTheme.xaml">
             <OnPlatform x:Key="IconFontFamily" x:TypeArguments="x:String">
                 <On Platform="Android">materialdesignicons-webfont.ttf#materialdesignicons-webfont</On>
             </OnPlatform>
 
-            <!--Orange-->
+            <!--Orange--><!--
             <Color x:Key="PrimaryColor">#120064</Color>
 
-            <!--Orange-->
+            --><!--Orange--><!--
             <Color x:Key="SavePrimaryColor">#126C19</Color>
 
-            <!--Dark Orange-->
+            --><!--Dark Orange--><!--
             <Color x:Key="PrimaryDarkColor">#090030</Color>
 
-            <!--White-->
+            --><!--White--><!--
             <Color x:Key="PrimaryTintColor">#FFFFFF</Color>
 
-            <!--Orange-->
+            --><!--Orange--><!--
             <Color x:Key="NavigationBarColor">#120064</Color>
 
-            <!--White-->
+            --><!--White--><!--
             <Color x:Key="PageBackgroundColor">#FFFFFF</Color>
 
-            <!--Dark Grey-->
+            --><!--Dark Grey--><!--
             <Color x:Key="PrimaryTextColor">#3f3f3f</Color>
 
-            <!--Mid Black-->
+            --><!--Mid Black--><!--
             <Color x:Key="SecondaryTextColor">#6e6e6e</Color>
 
-            <!--Mid-Light Grey-->
+            --><!--Mid-Light Grey--><!--
             <Color x:Key="SubTextColor">#969696</Color>
 
-            <!--White-->
+            --><!--White--><!--
             <Color x:Key="OverlayTextColor">#FFFFFF</Color>
 
-            <!--Transperant Black-->
+            --><!--Transperant Black--><!--
             <Color x:Key="TransperantBackgroundColor">#56000000</Color>
 
-            <!--Silver Light Grey-->
+            --><!--Silver Light Grey--><!--
             <Color x:Key="SeparatorLineColor">#ececec</Color>
 
-            <!-- Menu Icon Black-->
+            --><!-- Menu Icon Black--><!--
             <Color x:Key="MainMenuIconColor">#120064</Color>
 
-            <!--Danger button color-->
+            --><!--Danger button color--><!--
             <Color x:Key="DangerColor">#f60303</Color>
 
             <Style x:Key="MainMenuIconStyle" TargetType="Label">
@@ -86,8 +86,52 @@
                 <Setter Property="BackgroundColor" Value="{DynamicResource DangerColor}"/>
                 <Setter Property="TextColor" Value="{DynamicResource PrimaryTintColor}"/>
                 <Setter Property="CornerRadius" Value="20"/>
+            </Style>-->
+
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{DynamicResource NavigationBarColor}" />
+                <Setter Property="BarTextColor" Value="{DynamicResource SecondaryColor}" />
             </Style>
-            
+
+            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource SecondaryColor}" />
+                <Setter Property="HeightRequest" Value="45" />
+                <Setter Property="WidthRequest" Value="190" />
+            </Style>
+
+            <Style x:Key="LargeLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColor}" />
+                <Setter Property="FontSize" Value="30" />
+            </Style>
+
+            <Style x:Key="MediumLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+                <Setter Property="FontSize" Value="25" />
+            </Style>
+
+            <Style x:Key="SmallLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource TertiaryTextColor}" />
+                <Setter Property="FontSize" Value="15" />
+            </Style>
+
+            <!--<Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{DynamicResource NavigationBarColor}" />
+                <Setter Property="Shell.ForegroundColor" Value="{DynamicResource SecondaryColor}" />
+                <Setter Property="Shell.TitleColor" Value="{DynamicResource SecondaryColor}" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="{DynamicResource AccentColor}" />
+            </Style>
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="TabBar" />-->
+            <!-- Menu Icon Black-->
+            <Style x:Key="MainMenuIconStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource MainMenuIconColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource IconFontFamily}" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Color x:Key="MainMenuIconColor">#120064</Color>
+
             <local:DatetimeToStringConverter x:Key="cnvDateTimeConverter"/>
             <DataTemplate x:Key="AttendanceItemTemplate">
                 <ViewCell>
@@ -120,7 +164,7 @@
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <Grid Grid.Row="0">
-                                        <Label Visual="Material" LineBreakMode="NoWrap"
+                                        <Label LineBreakMode="NoWrap"
                                                TextColor="#474747"
                                                Text="{Binding AttendanceDate, Converter={StaticResource cnvDateTimeConverter}}" 
                                                FontSize="18" />
