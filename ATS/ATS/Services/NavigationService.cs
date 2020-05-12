@@ -25,6 +25,9 @@ namespace ATS.Services
                 case "AttendanceSetting":
                     await App.Navigator.PushAsync(new AttendanceSetting());
                     break;
+                case "AddAttendancePage":
+                    await App.Navigator.PushAsync(new AddAttendancePage());
+                    break;
                 case "MainPage":
                     await App.Navigator.PopToRootAsync();
                     break;

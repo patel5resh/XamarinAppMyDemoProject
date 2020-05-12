@@ -4,15 +4,18 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Color x:Key="PrimaryColor">WhiteSmoke</Color>
-    <Color x:Key="AccentColor">#d9d9d9</Color>
-    <Color x:Key="SecondaryColor">Black</Color>
+    <Color x:Key="PrimaryColor">#2acd09</Color>
+    <Color x:Key="AccentColor">#90EE90</Color>
+    <Color x:Key="SecondaryColor">White</Color>
 
     <Color x:Key="PageBackgroundColor">White</Color>
-    <Color x:Key="NavigationBarColor">WhiteSmoke</Color>
+    <Color x:Key="NavigationBarColor">#2acd09</Color>
 
     <Color x:Key="PrimaryTextColor">Black</Color>
     <Color x:Key="SecondaryTextColor">#4a4a4a</Color>
     <Color x:Key="TertiaryTextColor">#7d7d7d</Color>
-    <Color x:Key="MainMenuIconColor">#120064</Color>
+    <Color x:Key="MainMenuIconColor">#2acd09</Color>
+
+    <Color x:Key="BackgroundGradientEndColor">#C1FCB6</Color>
+    <Color x:Key="BackgroundGradientStartColor">#2acd09</Color>
 </ResourceDictionary>

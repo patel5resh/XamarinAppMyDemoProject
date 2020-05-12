@@ -18,204 +18,126 @@
                 <On Platform="Android">materialdesignicons-webfont.ttf#materialdesignicons-webfont</On>
             </OnPlatform>
         </ResourceDictionary>
-        <!--Orange--><!--
-            <Color x:Key="PrimaryColor">#120064</Color>
 
-            --><!--Orange--><!--
-            <Color x:Key="SavePrimaryColor">#126C19</Color>
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="{DynamicResource NavigationBarColor}" />
+            <Setter Property="BarTextColor" Value="{DynamicResource SecondaryColor}" />
+        </Style>
 
-            --><!--Dark Orange--><!--
-            <Color x:Key="PrimaryDarkColor">#090030</Color>
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+            <Setter Property="TextColor" Value="{DynamicResource SecondaryColor}" />
+            <Setter Property="HeightRequest" Value="45" />
+            <Setter Property="WidthRequest" Value="190" />
+        </Style>
 
-            --><!--White--><!--
-            <Color x:Key="PrimaryTintColor">#FFFFFF</Color>
+        <Style x:Key="LargeLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColor}" />
+            <Setter Property="FontSize" Value="30" />
+        </Style>
 
-            --><!--Orange--><!--
-            <Color x:Key="NavigationBarColor">#120064</Color>
+        <Style x:Key="MediumLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+            <Setter Property="FontSize" Value="25" />
+        </Style>
 
-            --><!--White--><!--
-            <Color x:Key="PageBackgroundColor">#FFFFFF</Color>
+        <Style x:Key="SmallLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource TertiaryTextColor}" />
+            <Setter Property="FontSize" Value="15" />
+        </Style>
 
-            --><!--Dark Grey--><!--
-            <Color x:Key="PrimaryTextColor">#3f3f3f</Color>
-
-            --><!--Mid Black--><!--
-            <Color x:Key="SecondaryTextColor">#6e6e6e</Color>
-
-            --><!--Mid-Light Grey--><!--
-            <Color x:Key="SubTextColor">#969696</Color>
-
-            --><!--White--><!--
-            <Color x:Key="OverlayTextColor">#FFFFFF</Color>
-
-            --><!--Transperant Black--><!--
-            <Color x:Key="TransperantBackgroundColor">#56000000</Color>
-
-            --><!--Silver Light Grey--><!--
-            <Color x:Key="SeparatorLineColor">#ececec</Color>
-
-            --><!-- Menu Icon Black--><!--
-            <Color x:Key="MainMenuIconColor">#120064</Color>
-
-            --><!--Danger button color--><!--
-            <Color x:Key="DangerColor">#f60303</Color>
-
-            <Style x:Key="MainMenuIconStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{DynamicResource MainMenuIconColor}" />
-                <Setter Property="FontFamily" Value="{StaticResource IconFontFamily}" />
-                <Setter Property="FontSize" Value="24" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-            </Style>
-
-            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
-                <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}"/>
-                <Setter Property="TextColor" Value="{DynamicResource PrimaryTintColor}"/>
-                <Setter Property="HeightRequest" Value="40"/>
-                <Setter Property="WidthRequest" Value="40"/>
-                <Setter Property="CornerRadius" Value="20"/>
-            </Style>
-            <Style x:Key="PopupSaveButtonStyle" TargetType="Button">
-                <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="BackgroundColor" Value="{DynamicResource SavePrimaryColor}"/>
-                <Setter Property="TextColor" Value="{DynamicResource PrimaryTintColor}"/>
-                <Setter Property="CornerRadius" Value="20"/>
-            </Style>
-            <Style x:Key="PopupDeleteButtonStyle" TargetType="Button">
-                <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="BackgroundColor" Value="{DynamicResource DangerColor}"/>
-                <Setter Property="TextColor" Value="{DynamicResource PrimaryTintColor}"/>
-                <Setter Property="CornerRadius" Value="20"/>
-            </Style>-->
-
-            <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="{DynamicResource NavigationBarColor}" />
-                <Setter Property="BarTextColor" Value="{DynamicResource SecondaryColor}" />
-            </Style>
-
-            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
-                <Setter Property="TextColor" Value="{DynamicResource SecondaryColor}" />
-                <Setter Property="HeightRequest" Value="45" />
-                <Setter Property="WidthRequest" Value="190" />
-            </Style>
-
-            <Style x:Key="LargeLabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColor}" />
-                <Setter Property="FontSize" Value="30" />
-            </Style>
-
-            <Style x:Key="MediumLabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
-                <Setter Property="FontSize" Value="25" />
-            </Style>
-
-            <Style x:Key="SmallLabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{DynamicResource TertiaryTextColor}" />
-                <Setter Property="FontSize" Value="15" />
-            </Style>
-
-            <!--<Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{DynamicResource NavigationBarColor}" />
-                <Setter Property="Shell.ForegroundColor" Value="{DynamicResource SecondaryColor}" />
-                <Setter Property="Shell.TitleColor" Value="{DynamicResource SecondaryColor}" />
-                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
-                <Setter Property="Shell.UnselectedColor" Value="{DynamicResource AccentColor}" />
-            </Style>
-            <Style BasedOn="{StaticResource BaseStyle}" TargetType="TabBar" />-->
-            <!-- Menu Icon Black-->
-            <Style x:Key="MainMenuIconStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{DynamicResource MainMenuIconColor}" />
-                <Setter Property="FontFamily" Value="{StaticResource IconFontFamily}" />
-                <Setter Property="FontSize" Value="24" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-            </Style>
+        <Style x:Key="MainMenuIconStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource MainMenuIconColor}" />
+            <Setter Property="FontFamily" Value="{StaticResource IconFontFamily}" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        </Style>
       
-            <local:DatetimeToStringConverter x:Key="cnvDateTimeConverter"/>
-            <DataTemplate x:Key="AttendanceItemTemplate">
-                <ViewCell>
-                    <ViewCell.View>
-                        <yummy:PancakeView
-                            BackgroundGradientAngle="45"
-                            BackgroundGradientEndColor="Azure"
-                            BackgroundGradientStartColor="LightSkyBlue"
-                            CornerRadius="32,0,0,32"
-                            HasShadow="False"
-                            HeightRequest="100"
-                            VerticalOptions="CenterAndExpand">
-                            <Grid x:Name="grid">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="1" />
-                            </Grid.RowDefinitions>
-                            <Grid RowSpacing="0" ColumnSpacing="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="1"
-                                        RowSpacing="1"
-                                        Padding="15,0,0,0"
-                                        VerticalOptions="Center">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <Grid Grid.Row="0">
-                                        <Label LineBreakMode="NoWrap"
-                                               TextColor="#474747"
-                                               Text="{Binding AttendanceDate, Converter={StaticResource cnvDateTimeConverter}}" 
-                                               FontSize="18" />
-                                    </Grid>
-                                    <Grid RowSpacing="0" ColumnSpacing="0" Grid.Row="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="10" />
-                                            <ColumnDefinition Width="70" />
-                                            <ColumnDefinition Width="3" />
-                                            <ColumnDefinition Width="20" />
-                                            <ColumnDefinition Width="80" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <!--In Time-->
-                                        <Label TextColor="Green" LineBreakMode="NoWrap"
-                                                Text="In" FontSize="10" Grid.Column="0"/>
-                                        <Label TextColor="#474747" LineBreakMode="NoWrap"
-                                                Text="{Binding InTime}" FontSize="10" Grid.Column="1"/>
-                                        <!--In Time-->
-                                        <!--<Label TextColor="#474747" LineBreakMode="NoWrap"  Margin="0,0,2,0"
-                                            Text="-" FontSize="10" Grid.Column="2"/>-->
-                                        <!--Out Time-->
-                                        <Label TextColor="Red" LineBreakMode="NoWrap"
-                                            Text="Out" Margin="2,0,0,0" FontSize="10" Grid.Column="3"/>
-                                        <Label TextColor="#474747" LineBreakMode="NoWrap"
-                                            Text="{Binding OutTime}" FontSize="10" Grid.Column="4" />
-                                        <!--Out Time-->
-                                    </Grid>
-                                    <!--Total Hours-->
-                                    <Grid Grid.Column="2" Margin="10,0,10,0" HorizontalOptions="End">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Label TextColor="#474747" LineBreakMode="NoWrap" 
-                                    Text="{Binding WorkingTime, StringFormat='{}{0:hh}:{0:mm}'}" FontSize="12" FontFamily="Bold" />
-                                        <Label TextColor="#474747" LineBreakMode="NoWrap" Grid.Column="1"
-                                    Text="hrs" FontSize="12" FontFamily="Bold" />
-                                    </Grid>
-                                    <!--Total Hours-->
+        <local:DatetimeToStringConverter x:Key="cnvDateTimeConverter"/>
+        <DataTemplate x:Key="AttendanceItemTemplate">
+            <ViewCell>
+                <ViewCell.View>
+                    <yummy:PancakeView
+                        BackgroundGradientAngle="45"
+                        BackgroundGradientEndColor="{DynamicResource BackgroundGradientEndColor}"
+                        BackgroundGradientStartColor="{DynamicResource BackgroundGradientStartColor}"
+                        CornerRadius="32,0,0,32"
+                        HasShadow="False"
+                        HeightRequest="100"
+                        VerticalOptions="CenterAndExpand">
+                        <Grid x:Name="grid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="1" />
+                        </Grid.RowDefinitions>
+                        <Grid RowSpacing="0" ColumnSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1"
+                                    RowSpacing="1"
+                                    Padding="15,0,0,0"
+                                    VerticalOptions="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Label LineBreakMode="NoWrap"
+                                            TextColor="{DynamicResource MediumLabelStyle}"
+                                            Text="{Binding AttendanceDate, Converter={StaticResource cnvDateTimeConverter}}" 
+                                            FontSize="18" />
                                 </Grid>
-                                <Image Grid.Column="2" x:Name="selectionImage" Margin="10,0,10,0"
-                                       HeightRequest="30" WidthRequest="30" VerticalOptions="Center" 
-                                       HorizontalOptions="Center" IsVisible="{Binding IsVisiable}"
-                                       Source="Selected.png"/>
+                                <Grid RowSpacing="0" ColumnSpacing="0" Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="10" />
+                                        <ColumnDefinition Width="70" />
+                                        <ColumnDefinition Width="3" />
+                                        <ColumnDefinition Width="20" />
+                                        <ColumnDefinition Width="80" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <!--In Time-->
+                                    <Label TextColor="{DynamicResource SmallLabelStyle}" LineBreakMode="NoWrap"
+                                            Text="In" FontSize="10" Grid.Column="0"/>
+                                    <Label TextColor="{DynamicResource SmallLabelStyle}" LineBreakMode="NoWrap"
+                                            Text="{Binding InTime}" FontSize="10" Grid.Column="1"/>
+                                    <!--In Time-->
+                                    <!--<Label TextColor="#474747" LineBreakMode="NoWrap"  Margin="0,0,2,0"
+                                        Text="-" FontSize="10" Grid.Column="2"/>-->
+                                    <!--Out Time-->
+                                    <Label TextColor="{DynamicResource SmallLabelStyle}" LineBreakMode="NoWrap"
+                                        Text="Out" Margin="2,0,0,0" FontSize="10" Grid.Column="3"/>
+                                    <Label TextColor="{DynamicResource SmallLabelStyle}" LineBreakMode="NoWrap"
+                                        Text="{Binding OutTime}" FontSize="10" Grid.Column="4" />
+                                    <!--Out Time-->
+                                </Grid>
+                                <!--Total Hours-->
+                                <Grid Grid.Column="2" Margin="10,0,10,0" HorizontalOptions="End">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label TextColor="{DynamicResource MediumLabelStyle}" LineBreakMode="NoWrap" 
+                                Text="{Binding WorkingTime, StringFormat='{}{0:hh}:{0:mm}'}" FontSize="12" FontFamily="Bold" />
+                                    <Label TextColor="{DynamicResource MediumLabelStyle}" LineBreakMode="NoWrap" Grid.Column="1"
+                                Text="hrs" FontSize="12" FontFamily="Bold" />
+                                </Grid>
+                                <!--Total Hours-->
                             </Grid>
-                            <Frame Grid.Row="1" OutlineColor="#E4E4E4" HasShadow="True" HeightRequest="1"/>
+                            <Image Grid.Column="2" x:Name="selectionImage" Margin="10,0,10,0"
+                                    HeightRequest="30" WidthRequest="30" VerticalOptions="Center" 
+                                    HorizontalOptions="Center" IsVisible="{Binding IsVisiable}"
+                                    Source="Selected.png"/>
                         </Grid>
-                        </yummy:PancakeView>
-                    </ViewCell.View>
-                </ViewCell>
-            </DataTemplate>
+                        <Frame Grid.Row="1" OutlineColor="#E4E4E4" HasShadow="True" HeightRequest="1"/>
+                    </Grid>
+                    </yummy:PancakeView>
+                </ViewCell.View>
+            </ViewCell>
+        </DataTemplate>
         
     </Application.Resources>
 </Application>

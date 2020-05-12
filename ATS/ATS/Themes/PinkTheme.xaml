@@ -14,5 +14,8 @@
     <Color x:Key="PrimaryTextColor">#3d0020</Color>
     <Color x:Key="SecondaryTextColor">#610033</Color>
     <Color x:Key="TertiaryTextColor">#960050</Color>
-    <Color x:Key="MainMenuIconColor">#120064</Color>
+    <Color x:Key="MainMenuIconColor">#fc0384</Color>
+
+    <Color x:Key="BackgroundGradientEndColor">#ffb8dd</Color>
+    <Color x:Key="BackgroundGradientStartColor">#fc0384</Color>
 </ResourceDictionary>

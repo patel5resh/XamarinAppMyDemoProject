@@ -10,7 +10,7 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
     <ScrollView BindingContext="{Binding NewAddAttendance}">
-        <StackLayout Padding="5">
+        <StackLayout Padding="20">
             <Label Text="Date" FontSize="20" HorizontalOptions="StartAndExpand"/>
             <DatePicker Date="{Binding AttendanceDate, Mode=TwoWay}"/>
             <Label Text="InTime" FontSize="20" HorizontalOptions="StartAndExpand"/>

@@ -31,16 +31,16 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <StackLayout BackgroundColor="#FFFFFF" VerticalOptions="FillAndExpand" HeightRequest="130">
-                    <StackLayout BackgroundColor="#120064" HeightRequest="80">
+                    <StackLayout BackgroundColor="{DynamicResource PrimaryColor}" HeightRequest="80">
                         <Frame Margin="0,10,0,20" BackgroundColor="Transparent" CornerRadius="10">
-                            <yummy:PancakeView BackgroundGradientStartColor="#FF33AA" BackgroundGradientEndColor="#f7e843"
+                            <yummy:PancakeView BackgroundGradientStartColor="{DynamicResource PrimaryColor}" BackgroundGradientEndColor="#f7e843"
                                BackgroundGradientAngle="45" HasShadow="True" CornerRadius="10">
                                 <StackLayout HorizontalOptions="FillAndExpand"
                                              Orientation="Horizontal">
                                     <StackLayout Margin="5" HorizontalOptions="FillAndExpand">
                                         <Label HorizontalOptions="CenterAndExpand" 
                                                Text="Select Year"                                               
-                                               TextColor="Black" />
+                                               TextColor="{DynamicResource MediumLabelStyle}" />
                                         <Picker ItemsSource="{Binding ListYears}" 
                             ItemDisplayBinding="{Binding Value}"
                             SelectedItem ="{Binding SelectedYear}"
@@ -50,7 +50,7 @@
                                     <StackLayout Margin="5" HorizontalOptions="FillAndExpand">
                                         <Label HorizontalOptions="CenterAndExpand" 
                                                Text="Select Month"                                               
-                                               TextColor="Black" />
+                                               TextColor="{DynamicResource MediumLabelStyle}" />
                                         <Picker ItemsSource="{Binding ListMonths}" 
                             ItemDisplayBinding="{Binding Value}"
                             SelectedItem ="{Binding SelectedMonth}"
@@ -60,13 +60,13 @@
                                     <StackLayout Margin="5" HorizontalOptions="FillAndExpand">
                                         <Label HorizontalOptions="CenterAndExpand" 
                                                Text="Total Time"                                              
-                                               TextColor="Black"/>
+                                               TextColor="{DynamicResource MediumLabelStyle}"/>
                                         <Label Text="{Binding TotalTimeSummary}" 
                             Margin="0,7,0,0"
                             FontSize="15" 
                             FontAttributes="Bold"
                             HorizontalOptions="CenterAndExpand"
-                            TextColor="#120064" />
+                            TextColor="{DynamicResource LargeLabelStyle}" />
                                     </StackLayout>
                                 </StackLayout>
                             </yummy:PancakeView>
@@ -91,7 +91,7 @@
                                     <Label FontFamily="SansProBold"
                                            FontSize="20"
                                            Text="Attendence"
-                                           TextColor="#120064"/>
+                                           TextColor="{DynamicResource LargeLabelStyle}"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical">
                                     <syn:SfListView x:Name="listAttendance"  
@@ -120,7 +120,7 @@
                 </Frame>
             </Grid>
             <yummy:PancakeView Grid.Row="2" x:Name="gridVisible" HeightRequest="46" IsVisible="{Binding FooterIsVisible}" 
-                               BackgroundColor="#120064"
+                               BackgroundColor="{DynamicResource PrimaryColor}"
                                HasShadow="True" CornerRadius="20,20,0,0"
                                HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                 <Grid>
