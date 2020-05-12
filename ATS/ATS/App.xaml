@@ -17,8 +17,8 @@
             <OnPlatform x:Key="IconFontFamily" x:TypeArguments="x:String">
                 <On Platform="Android">materialdesignicons-webfont.ttf#materialdesignicons-webfont</On>
             </OnPlatform>
-
-            <!--Orange--><!--
+        </ResourceDictionary>
+        <!--Orange--><!--
             <Color x:Key="PrimaryColor">#120064</Color>
 
             --><!--Orange--><!--
@@ -130,8 +130,7 @@
                 <Setter Property="FontSize" Value="24" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
-            <Color x:Key="MainMenuIconColor">#120064</Color>
-
+      
             <local:DatetimeToStringConverter x:Key="cnvDateTimeConverter"/>
             <DataTemplate x:Key="AttendanceItemTemplate">
                 <ViewCell>
@@ -217,6 +216,6 @@
                     </ViewCell.View>
                 </ViewCell>
             </DataTemplate>
-        </ResourceDictionary>
+        
     </Application.Resources>
 </Application>
