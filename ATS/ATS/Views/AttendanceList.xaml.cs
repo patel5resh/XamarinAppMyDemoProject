@@ -15,8 +15,8 @@ namespace ATS.Views
             {
                 mainViewModel.RefreshAttendancesCommand.Execute(this);
             };
-            NavigationPage navigationPage = new NavigationPage();
-            navigationPage.ToolbarItems.Remove(adds);
+            //NavigationPage navigationPage = new NavigationPage();
+            //navigationPage.SetHasBackButton(this, false);
         }
 
         //private void ListView_SelectionChanged(object sender, ItemSelectionChangedEventArgs e)

@@ -14,10 +14,12 @@ namespace ATS.Views
     {
         AttendanceInfo model = new AttendanceInfo();
         private NavigationService navigationService;
+        private AttendanceService attendanceService; 
         public AddAttendance(AttendanceInfo details)
         {
             InitializeComponent();
             navigationService = new NavigationService();
+            attendanceService = new AttendanceService();
             BindingContext = new AddAttendanceViewModel(Navigation);
             if (details != null)
             {
@@ -88,12 +90,16 @@ namespace ATS.Views
             model.OutTime = Outts + " " + Out_AM_PM;
             model.WorkingTime = ts;
 
-            using (var da = new DataAccess())
+            var result = attendanceService.UpdateAttendance(model);
+            if (result)
             {
-                da.Update(model);
                 await DisplayAlert("Save", "Attendance successfully saved", "Ok");
                 await Navigation.PopPopupAsync();
                 await navigationService.Navigate("AttendanceList");
+            }
+            else
+            {
+                await DisplayAlert("Error", "Something is wrong", "Ok");
             }
         }
 

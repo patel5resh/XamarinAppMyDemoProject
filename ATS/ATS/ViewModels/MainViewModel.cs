@@ -124,19 +124,18 @@ namespace ATS.ViewModels
             }
         }
 
-        private bool editEnabled = true;
-        public bool EditEnabled
-        {
-            set
-            {
-                editEnabled = value;
-                OnPropertyChanged();
-            }
-            get
-            {
-                return editEnabled;
-            }
-        }
+        //private bool editEnabled;
+        //public bool EditEnabled
+        //{
+        //    set
+        //    {
+        //        SetProperty(ref editEnabled, value);
+        //    }
+        //    get
+        //    {
+        //        return editEnabled;
+        //    }
+        //}
 
         private string selectedItemCount = "AttendanceList";
         public string SelectedItemCount
@@ -255,6 +254,7 @@ namespace ATS.ViewModels
             }
             SelectedItemCount = "AttendanceList";
         }
+
         private void AllSelectionAttendance()
         {
             if (AllChecked == 0)
@@ -316,82 +316,79 @@ namespace ATS.ViewModels
         {
             try
             {
-                var eventArgs = obj as ItemSelectionChangedEventArgs;
-                for (int i = 0; i < eventArgs.AddedItems.Count; i++)
+                if (flag == 1)
                 {
-                    var item = eventArgs.AddedItems[i];
-                    if ((item as AttendanceViewModel).IsSelected == false)
+                    var eventArgs = obj as ItemSelectionChangedEventArgs;
+                    for (int i = 0; i < eventArgs.AddedItems.Count; i++)
                     {
-                        (item as AttendanceViewModel).IsSelected = true;
-                        (item as AttendanceViewModel).IsVisiable = true;
-                        
-                        if (Count >= 0)
+                        var item = eventArgs.AddedItems[i];
+                        if ((item as AttendanceViewModel).IsSelected == false)
                         {
-                            if (Count == 0)
-                            {
-                                Count = 1;
-                            }
-                            else
-                            {
-                                Count = Count + 1;
-                            }
-                            SelectedItemCount = Count.ToString() + "/" + TotalCount.ToString() + " Selected";
-                        }
-                    }
-                    else
-                    {
-                        if ((item as AttendanceViewModel).IsSelected == true)
-                        {
+                            (item as AttendanceViewModel).IsSelected = true;
+                            (item as AttendanceViewModel).IsVisiable = true;
+
                             if (Count >= 0)
                             {
-                                Count = Count - 1;
-                                SelectedItemCount = Count.ToString() + "/" + TotalCount.ToString() + " Selected";
                                 if (Count == 0)
                                 {
-                                    SelectionGesture = TouchGesture.Hold;
-                                    FooterIsVisible = false;
-                                    flag = 0;
-                                    (item as AttendanceViewModel).IsSelected = false;
-                                    (item as AttendanceViewModel).IsVisiable = false;                                   
-                                    SelectedItemCount = "AttendanceList";
+                                    Count = 1;
+                                }
+                                else
+                                {
+                                    Count = Count + 1;
+                                }
+                                SelectedItemCount = Count.ToString() + "/" + TotalCount.ToString() + " Selected";
+                            }
+                        }
+                        else
+                        {
+                            if ((item as AttendanceViewModel).IsSelected == true)
+                            {
+                                if (Count >= 0)
+                                {
+                                    Count = Count - 1;
+                                    SelectedItemCount = Count.ToString() + "/" + TotalCount.ToString() + " Selected";
+                                    if (Count == 0)
+                                    {
+                                        SelectionGesture = TouchGesture.Hold;
+                                        FooterIsVisible = false;
+                                        flag = 0;
+                                        (item as AttendanceViewModel).IsSelected = false;
+                                        (item as AttendanceViewModel).IsVisiable = false;
+                                        SelectedItemCount = "AttendanceList";
+                                    }
                                 }
                             }
                         }
                     }
-                }
-                for (int i = 0; i < eventArgs.RemovedItems.Count; i++)
-                {
-                    var item = eventArgs.RemovedItems[i];
-                    (item as AttendanceViewModel).IsSelected = false;
-                    (item as AttendanceViewModel).IsVisiable = false;
-
-                    if (Count >= 0)
+                    for (int i = 0; i < eventArgs.RemovedItems.Count; i++)
                     {
-                        Count = Count - 1;
-                        SelectedItemCount = Count.ToString() + "/" + TotalCount.ToString() + " Selected";
-                        if (Count == 0)
+                        var item = eventArgs.RemovedItems[i];
+                        (item as AttendanceViewModel).IsSelected = false;
+                        (item as AttendanceViewModel).IsVisiable = false;
+
+                        if (Count >= 0)
+                        {
+                            Count = Count - 1;
+                            SelectedItemCount = Count.ToString() + "/" + TotalCount.ToString() + " Selected";
+                            if (Count <= 0)
+                            {
+                                SelectionGesture = TouchGesture.Hold;
+                                FooterIsVisible = false;
+                                flag = 0;
+                                Count = 0;
+                                SelectedItemCount = "AttendanceList";
+                            }
+                        }
+                        else
                         {
                             SelectionGesture = TouchGesture.Hold;
                             FooterIsVisible = false;
                             flag = 0;
+                            Count = 0;
                             SelectedItemCount = "AttendanceList";
                         }
-                    }
-                    else
-                    {
-                        SelectionGesture = TouchGesture.Hold;
-                        FooterIsVisible = false;
-                        flag = 0;
-                        SelectedItemCount = "AttendanceList";
-                    }
-                }
-                if(Count == 1)
-                {
-                    editEnabled = true;
-                }
-                else
-                {
-                    editEnabled = false;        
+                    }                  
                 }
             }
             catch (Exception ex)
@@ -402,7 +399,7 @@ namespace ATS.ViewModels
 
         private void EditAttendance(object obj)
         {
-            if (Attendances.Count == 1)
+            if (Count == 1)
             {
                 if (Attendances[0].IsSelected == true)
                 {

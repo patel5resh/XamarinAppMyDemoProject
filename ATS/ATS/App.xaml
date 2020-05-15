@@ -6,6 +6,7 @@
              xmlns:infra="clr-namespace:ATS.Infrastructure"
              xmlns:local="clr-namespace:ATS.Converters"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:helpers="clr-namespace:ATS.Helpers"
              mc:Ignorable="d"
              x:Class="ATS.App">
 
@@ -42,7 +43,7 @@
         </Style>
 
         <Style x:Key="SmallLabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="{DynamicResource TertiaryTextColor}" />
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
             <Setter Property="FontSize" Value="15" />
         </Style>
 
@@ -52,7 +53,9 @@
             <Setter Property="FontSize" Value="24" />
             <Setter Property="VerticalOptions" Value="CenterAndExpand" />
         </Style>
-      
+
+        <x:String x:Key="formattimewithoutseconds">{0:h:mm tt}</x:String>
+
         <local:DatetimeToStringConverter x:Key="cnvDateTimeConverter"/>
         <DataTemplate x:Key="AttendanceItemTemplate">
             <ViewCell>
@@ -60,9 +63,8 @@
                     <yummy:PancakeView
                         BackgroundGradientAngle="45"
                         BackgroundGradientEndColor="{DynamicResource BackgroundGradientEndColor}"
-                        BackgroundGradientStartColor="{DynamicResource BackgroundGradientStartColor}"
-                        CornerRadius="32,0,0,32"
-                        HasShadow="False"
+                        BackgroundGradientStartColor="{DynamicResource BackgroundGradientStartColor}"                       
+                        HasShadow="True"
                         HeightRequest="100"
                         VerticalOptions="CenterAndExpand">
                         <Grid x:Name="grid">
@@ -86,7 +88,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0">
                                     <Label LineBreakMode="NoWrap"
-                                            TextColor="{DynamicResource MediumLabelStyle}"
+                                            TextColor="{DynamicResource PrimaryTextColor}"
                                             Text="{Binding AttendanceDate, Converter={StaticResource cnvDateTimeConverter}}" 
                                             FontSize="18" />
                                 </Grid>
@@ -100,18 +102,19 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <!--In Time-->
-                                    <Label TextColor="{DynamicResource SmallLabelStyle}" LineBreakMode="NoWrap"
+                                        <Label TextColor="{DynamicResource SmallLabelStyle}" LineBreakMode="NoWrap"
                                             Text="In" FontSize="10" Grid.Column="0"/>
-                                    <Label TextColor="{DynamicResource SmallLabelStyle}" LineBreakMode="NoWrap"
-                                            Text="{Binding InTime}" FontSize="10" Grid.Column="1"/>
+                                        <Label TextColor="{DynamicResource SmallLabelStyle}" LineBreakMode="NoWrap"
+                                            Text="{Binding InTime, StringFormat={StaticResource formattimewithoutseconds}}" 
+                                               FontSize="10" Grid.Column="1"/>
                                     <!--In Time-->
                                     <!--<Label TextColor="#474747" LineBreakMode="NoWrap"  Margin="0,0,2,0"
                                         Text="-" FontSize="10" Grid.Column="2"/>-->
                                     <!--Out Time-->
-                                    <Label TextColor="{DynamicResource SmallLabelStyle}" LineBreakMode="NoWrap"
+                                        <Label TextColor="{DynamicResource SmallLabelStyle}" LineBreakMode="NoWrap"
                                         Text="Out" Margin="2,0,0,0" FontSize="10" Grid.Column="3"/>
-                                    <Label TextColor="{DynamicResource SmallLabelStyle}" LineBreakMode="NoWrap"
-                                        Text="{Binding OutTime}" FontSize="10" Grid.Column="4" />
+                                        <Label TextColor="{DynamicResource SmallLabelStyle}" LineBreakMode="NoWrap"
+                                        Text="{Binding OutTime, StringFormat={StaticResource formattimewithoutseconds}}" FontSize="10" Grid.Column="4" />
                                     <!--Out Time-->
                                 </Grid>
                                 <!--Total Hours-->
@@ -120,17 +123,18 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Label TextColor="{DynamicResource MediumLabelStyle}" LineBreakMode="NoWrap" 
+                                        <Label TextColor="{DynamicResource SmallLabelStyle}" LineBreakMode="NoWrap" 
                                 Text="{Binding WorkingTime, StringFormat='{}{0:hh}:{0:mm}'}" FontSize="12" FontFamily="Bold" />
-                                    <Label TextColor="{DynamicResource MediumLabelStyle}" LineBreakMode="NoWrap" Grid.Column="1"
+                                        <Label TextColor="{DynamicResource SmallLabelStyle}" LineBreakMode="NoWrap" Grid.Column="1"
                                 Text="hrs" FontSize="12" FontFamily="Bold" />
                                 </Grid>
                                 <!--Total Hours-->
                             </Grid>
-                            <Image Grid.Column="2" x:Name="selectionImage" Margin="10,0,10,0"
-                                    HeightRequest="30" WidthRequest="30" VerticalOptions="Center" 
+                            <Image Grid.Column="2" x:Name="selectionImage" Margin="0,0,10,0"
+                                    HeightRequest="25" WidthRequest="25" VerticalOptions="Center" 
                                     HorizontalOptions="Center" IsVisible="{Binding IsVisiable}"
-                                    Source="Selected.png"/>
+                                    Source="{FontImage FontFamily=FontAwesome,
+                                Glyph={x:Static helpers:IconFont.CheckboxMarkedCircle},Size=25,Color=White}"/>
                         </Grid>
                         <Frame Grid.Row="1" OutlineColor="#E4E4E4" HasShadow="True" HeightRequest="1"/>
                     </Grid>

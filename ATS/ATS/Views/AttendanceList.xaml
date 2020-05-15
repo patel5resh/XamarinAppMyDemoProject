@@ -7,6 +7,7 @@
     xmlns:syn="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:local="clr-namespace:ATS.Behaviors"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:helpers="clr-namespace:ATS.Helpers"
     mc:Ignorable="d"
     x:Class="ATS.Views.AttendanceList"
     Title="{Binding SelectedItemCount}"
@@ -30,10 +31,12 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <StackLayout BackgroundColor="#FFFFFF" VerticalOptions="FillAndExpand" HeightRequest="130">
+                <StackLayout VerticalOptions="FillAndExpand" HeightRequest="130">
                     <StackLayout BackgroundColor="{DynamicResource PrimaryColor}" HeightRequest="80">
                         <Frame Margin="0,10,0,20" BackgroundColor="Transparent" CornerRadius="10">
-                            <yummy:PancakeView BackgroundGradientStartColor="{DynamicResource PrimaryColor}" BackgroundGradientEndColor="#f7e843"
+                            <yummy:PancakeView 
+                               BackgroundGradientStartColor="{DynamicResource PrimaryColor}" 
+                               BackgroundGradientEndColor="#BDBDBD"
                                BackgroundGradientAngle="45" HasShadow="True" CornerRadius="10">
                                 <StackLayout HorizontalOptions="FillAndExpand"
                                              Orientation="Horizontal">
@@ -133,13 +136,19 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <StackLayout Margin="0,10,0,0" Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Center">
-                        <Button x:Name="allSelection" Command="{Binding AllSelectedCommand}" BackgroundColor="Transparent" ImageSource="Selected.png" HeightRequest="25" />
+                        <Button x:Name="allSelection" Command="{Binding AllSelectedCommand}" BackgroundColor="Transparent" 
+                                ImageSource="{FontImage FontFamily=FontAwesome,
+                                Glyph={x:Static helpers:IconFont.CheckboxMarkedCircleOutline},Size=25,Color=White}" HeightRequest="25" />
                     </StackLayout>
                     <StackLayout Margin="20,10,0,0" Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center">
-                        <Button x:Name="editSelection" IsEnabled="False" Command="{Binding Path=BindingContext.EditAttendanceCommand, Source={x:Reference listAttendance}}" CommandParameter="{Binding .}" BackgroundColor="Transparent" ImageSource="Edit.png" HeightRequest="25" />
+                        <Button x:Name="editSelection" Command="{Binding Path=BindingContext.EditAttendanceCommand, Source={x:Reference listAttendance}}" CommandParameter="{Binding .}" 
+                                BackgroundColor="Transparent" ImageSource="{FontImage FontFamily=FontAwesome,
+                                Glyph={x:Static helpers:IconFont.Pencil},Size=25,Color=White}" HeightRequest="25" />
                     </StackLayout>
                     <StackLayout Margin="20,10,0,0" Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalOptions="Center">
-                        <Button x:Name="deleteSelection" Command="{Binding DeleteAttendanceCommand}" BackgroundColor="Transparent" ImageSource="Delete.png" HeightRequest="25" />
+                        <Button x:Name="deleteSelection" Command="{Binding DeleteAttendanceCommand}" 
+                                BackgroundColor="Transparent" ImageSource="{FontImage FontFamily=FontAwesome,
+                                Glyph={x:Static helpers:IconFont.DeleteForever},Size=25,Color=White}" HeightRequest="25" />
                     </StackLayout>
                 </Grid>
             </yummy:PancakeView>

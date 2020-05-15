@@ -33,5 +33,19 @@ namespace ATS.Services
             }
             return result;
         }
+
+        public bool UpdateAttendance(AttendanceInfo model)
+        {
+            bool result = false;
+            if (model.Id != 0)
+            {
+                using (var da = new DataAccess())
+                {
+                    da.Update(model);
+                }
+                result = true;
+            }
+            return result;
+        }
     }
 }
