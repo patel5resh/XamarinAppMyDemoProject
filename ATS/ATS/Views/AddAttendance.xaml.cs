@@ -9,7 +9,6 @@ using Xamarin.Forms.Xaml;
 
 namespace ATS.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddAttendance : PopupPage
     {
         AttendanceInfo model = new AttendanceInfo();

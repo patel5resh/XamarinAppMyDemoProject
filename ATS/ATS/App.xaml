@@ -30,6 +30,7 @@
             <Setter Property="TextColor" Value="{DynamicResource SecondaryColor}" />
             <Setter Property="HeightRequest" Value="45" />
             <Setter Property="WidthRequest" Value="190" />
+            <Setter Property="CornerRadius" Value="20" />
         </Style>
 
         <Style x:Key="LargeLabelStyle" TargetType="Label">
@@ -142,6 +143,56 @@
                 </ViewCell.View>
             </ViewCell>
         </DataTemplate>
-        
+
+        <DataTemplate x:Key="HolidayItemTemplate">
+            <ViewCell>
+                <ViewCell.View>
+                    <yummy:PancakeView
+                        BackgroundGradientAngle="45"
+                        BackgroundGradientEndColor="{DynamicResource BackgroundGradientEndColor}"
+                        BackgroundGradientStartColor="{DynamicResource BackgroundGradientStartColor}"                       
+                        HasShadow="True"
+                        HeightRequest="100"
+                        VerticalOptions="CenterAndExpand">
+                        <Grid x:Name="gridHoliday">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="1" />
+                            </Grid.RowDefinitions>
+                            <Grid RowSpacing="0" ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="1"
+                                    RowSpacing="1"
+                                    Padding="15,0,0,0"
+                                    VerticalOptions="Center">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <Label LineBreakMode="NoWrap"
+                                            TextColor="{DynamicResource PrimaryTextColor}"
+                                            Text="{Binding HolidayDate, Converter={StaticResource cnvDateTimeConverter}}" 
+                                            FontSize="18" />
+                                    </Grid>
+                                    <Grid Grid.Row="1">
+                                        <Label LineBreakMode="NoWrap"
+                                            TextColor="{DynamicResource PrimaryTextColor}"
+                                            Text="{Binding Description}" 
+                                            FontSize="12" />
+                                    </Grid>
+                                </Grid>
+                                <Frame Grid.Row="1" OutlineColor="#E4E4E4" HasShadow="True" HeightRequest="1"/>
+                            </Grid>
+                        </Grid>
+                    </yummy:PancakeView>
+                </ViewCell.View>
+            </ViewCell>
+        </DataTemplate>
+
     </Application.Resources>
 </Application>

@@ -5,7 +5,6 @@ using Xamarin.Forms.Xaml;
 
 namespace ATS.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListofAttendancePage : ContentPage
     {
         ObservableCollection<Employee> employees = new ObservableCollection<Employee>();

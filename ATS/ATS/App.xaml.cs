@@ -15,11 +15,10 @@ namespace ATS
         {
             // Initialize Live Reload.
             InitializeComponent();
-            
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjQyOTQzQDMxMzgyZTMxMmUzMG9PYXgveFJBTGdHMTNUYTlXM2FybWhYMS9IeS9jVGM5VWJpeEV5VERhd1U9");
             #if DEBUG
             HotReloader.Current.Run(this);
             #endif
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjQyOTQzQDMxMzgyZTMxMmUzMG9PYXgveFJBTGdHMTNUYTlXM2FybWhYMS9IeS9jVGM5VWJpeEV5VERhd1U9");          
             MainPage = new MasterPage();
             SetupCurrentTheme();
         }

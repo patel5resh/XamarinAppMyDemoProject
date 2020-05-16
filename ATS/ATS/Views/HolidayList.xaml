@@ -1,12 +1,153 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ATS.Views.HolidayList">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Holiday List"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:syn="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:local="clr-namespace:ATS.Behaviors"
+             xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
+             xmlns:helpers="clr-namespace:ATS.Helpers"
+             x:Class="ATS.Views.HolidayList"
+             Title="Holiday List"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="Add.png" Command="{Binding NewHolidayCommand}" IsDestructive="False"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:CustomConverter x:Key="EventArgs" />
+            <local:HoldingConverter x:Key="HoldEventArgs" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <!--<Grid Grid.Row="0">
+                <StackLayout VerticalOptions="FillAndExpand" HeightRequest="130">
+                    <StackLayout BackgroundColor="{DynamicResource PrimaryColor}" HeightRequest="80">
+                        <Frame Margin="0,10,0,20" BackgroundColor="Transparent" CornerRadius="10">
+                            <yummy:PancakeView 
+                               BackgroundGradientStartColor="{DynamicResource PrimaryColor}" 
+                               BackgroundGradientEndColor="#BDBDBD"
+                               BackgroundGradientAngle="45" HasShadow="True" CornerRadius="10">
+                                <StackLayout HorizontalOptions="FillAndExpand"
+                                             Orientation="Horizontal">
+                                    <StackLayout Margin="5" HorizontalOptions="FillAndExpand">
+                                        <Label HorizontalOptions="CenterAndExpand" 
+                                               Text="Select Year"                                               
+                                               TextColor="{DynamicResource MediumLabelStyle}" />
+                                        <Picker ItemsSource="{Binding ListYears}" 
+                            ItemDisplayBinding="{Binding Value}"
+                            SelectedItem ="{Binding SelectedYear}"
+                            Margin="0,-10,0,0"
+                            HorizontalOptions="CenterAndExpand"/>
+                                    </StackLayout>
+                                    <StackLayout Margin="5" HorizontalOptions="FillAndExpand">
+                                        <Label HorizontalOptions="CenterAndExpand" 
+                                               Text="Select Month"                                               
+                                               TextColor="{DynamicResource MediumLabelStyle}" />
+                                        <Picker ItemsSource="{Binding ListMonths}" 
+                            ItemDisplayBinding="{Binding Value}"
+                            SelectedItem ="{Binding SelectedMonth}"
+                            Margin="0,-10,0,0"
+                            HorizontalOptions="CenterAndExpand"/>
+                                    </StackLayout>
+                                    <StackLayout Margin="5" HorizontalOptions="FillAndExpand">
+                                        <Label HorizontalOptions="CenterAndExpand" 
+                                               Text="Total Time"                                              
+                                               TextColor="{DynamicResource MediumLabelStyle}"/>
+                                        <Label Text="{Binding TotalTimeSummary}" 
+                            Margin="0,7,0,0"
+                            FontSize="15" 
+                            FontAttributes="Bold"
+                            HorizontalOptions="CenterAndExpand"
+                            TextColor="{DynamicResource LargeLabelStyle}" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </yummy:PancakeView>
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>-->
+            <Grid Grid.Row="1">
+                <Frame Margin="20,0,20,10"
+                       CornerRadius="10"
+                       HorizontalOptions="FillAndExpand">
+                    <pulltoRefresh:SfPullToRefresh 
+                                x:Name="pullToRefresh" 
+                                ProgressBackgroundColor="#428BCA" 
+                                TransitionMode="Push" 
+                                IsEnabled="True"         
+                                RefreshCommand="{Binding RefreshHolidayCommand}"
+                                IsRefreshing="{Binding IsRefreshingHoliday, Mode=TwoWay}">
+                        <pulltoRefresh:SfPullToRefresh.PullableContent>
+                            <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontFamily="SansProBold"
+                                           FontSize="20"
+                                           Text="Holiday"
+                                           TextColor="{DynamicResource LargeLabelStyle}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical">
+                                    <syn:SfListView x:Name="listHoliday"  
+                                                ItemsSource="{Binding Holidays}"   
+                                                ItemTemplate="{StaticResource HolidayItemTemplate}"    
+                                                SelectionMode="Multiple"
+                                                SelectionGesture="{Binding SelectionGesture}"
+                                                SelectionBackgroundColor="Transparent"
+                                                IsStickyHeader="True" ItemSize="70"
+                                                TapCommand="{Binding }"
+                                                HoldCommand="{Binding }">
+                                        <syn:SfListView.Behaviors>
+                                            <local:EventToCommandBehavior EventName="SelectionChanged" 
+                                                    Command="{Binding SelectionChangedCommand}"
+                                                    Converter="{StaticResource EventArgs}" />
+
+                                            <local:EventToCommandBehavior EventName="ItemHolding" 
+                                                    Command="{Binding ItemHoldingCommand}"
+                                                    Converter="{StaticResource HoldEventArgs}" />
+                                        </syn:SfListView.Behaviors>
+                                    </syn:SfListView>
+                                </StackLayout>
+                            </StackLayout>
+                        </pulltoRefresh:SfPullToRefresh.PullableContent>
+                    </pulltoRefresh:SfPullToRefresh>
+                </Frame>
+            </Grid>
+            <!--<yummy:PancakeView Grid.Row="2" x:Name="gridVisible" HeightRequest="46" IsVisible="{Binding FooterIsVisible}" 
+                               BackgroundColor="{DynamicResource PrimaryColor}"
+                               HasShadow="True" CornerRadius="20,20,0,0"
+                               HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Margin="0,10,0,0" Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Center">
+                        <Button x:Name="allSelection" Command="{Binding AllSelectedCommand}" BackgroundColor="Transparent" 
+                                ImageSource="{FontImage FontFamily=FontAwesome,
+                                Glyph={x:Static helpers:IconFont.CheckboxMarkedCircleOutline},Size=25,Color=White}" HeightRequest="25" />
+                    </StackLayout>
+                    <StackLayout Margin="20,10,0,0" Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center">
+                        <Button x:Name="editSelection" Command="{Binding Path=BindingContext.EditAttendanceCommand, Source={x:Reference listHoliday}}" CommandParameter="{Binding }" 
+                                BackgroundColor="Transparent" ImageSource="{FontImage FontFamily=FontAwesome,
+                                Glyph={x:Static helpers:IconFont.Pencil},Size=25,Color=White}" HeightRequest="25" />
+                    </StackLayout>
+                    <StackLayout Margin="20,10,0,0" Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalOptions="Center">
+                        <Button x:Name="deleteSelection" Command="{Binding DeleteAttendanceCommand}" 
+                                BackgroundColor="Transparent" ImageSource="{FontImage FontFamily=FontAwesome,
+                                Glyph={x:Static helpers:IconFont.DeleteForever},Size=25,Color=White}" HeightRequest="25" />
+                    </StackLayout>
+                </Grid>
+            </yummy:PancakeView>-->
+        </Grid>
+    </ScrollView>
 </ContentPage>

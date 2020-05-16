@@ -18,6 +18,7 @@ namespace ATS.Data
             connection = DependencyService.Get<IConfig>().DBConnect();
             connection.CreateTable<AttendanceInfo>();
             connection.CreateTable<AttendanceSettingModel>();
+            connection.CreateTable<HolidayInfo>();
         }
 
         public void Insert<T>(T model)

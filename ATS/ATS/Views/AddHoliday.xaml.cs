@@ -10,12 +10,12 @@ using Xamarin.Forms.Xaml;
 
 namespace ATS.Views
 {
-	public partial class HolidayList : ContentPage
+	public partial class AddHoliday : ContentPage
 	{
-		public HolidayList()
+		public AddHoliday()
 		{
 			InitializeComponent();
             this.BindingContext = new HolidayViewModel();
-        }
+		}
 	}
 }
