@@ -141,7 +141,7 @@
                                 Glyph={x:Static helpers:IconFont.CheckboxMarkedCircleOutline},Size=25,Color=White}" HeightRequest="25" />
                     </StackLayout>
                     <StackLayout Margin="20,10,0,0" Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center">
-                        <Button x:Name="editSelection" Command="{Binding Path=BindingContext.EditAttendanceCommand, Source={x:Reference listAttendance}}" CommandParameter="{Binding .}" 
+                        <Button x:Name="editSelection" Command="{Binding Path=BindingContext.EditAttendanceCommand, Source={x:Reference listAttendance}}" CommandParameter="{Binding }" 
                                 BackgroundColor="Transparent" ImageSource="{FontImage FontFamily=FontAwesome,
                                 Glyph={x:Static helpers:IconFont.Pencil},Size=25,Color=White}" HeightRequest="25" />
                     </StackLayout>

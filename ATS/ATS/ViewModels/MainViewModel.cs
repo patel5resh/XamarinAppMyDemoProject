@@ -30,6 +30,8 @@ namespace ATS.ViewModels
         private int Count = 0;
         private int TotalCount = 0;
         private int AllChecked = 0;
+        private int IsEdit = 0;
+        public INavigation Navigation { get; set; }
         #endregion
 
         #region Properties      
@@ -38,8 +40,7 @@ namespace ATS.ViewModels
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
         public ObservableCollection<AttendanceViewModel> Attendances { get; set; }
         public AttendanceViewModel NewAddAttendance { get; set; }
-        public INavigation Navigation { get; set; }
-
+       
         public Year SelectedYear
         {           
             set
@@ -194,12 +195,13 @@ namespace ATS.ViewModels
             selectionChangedCommand = new Command<object>(OnSelectionChanged);
             itemHoldingCommand = new Command<object>(OnItemHolding);
             EditAttendanceCommand = new Command<object>(EditAttendance);
-
+           
             //Call Method
             LoadMenu();
             ListYearMonthPicker();
             LoadAttendances();
         }
+
         #endregion
 
         #region Event
@@ -233,14 +235,17 @@ namespace ATS.ViewModels
 
         public ICommand AllSelectedCommand { get { return new RelayCommand(AllSelectionAttendance); } }
         public ICommand DeleteAttendanceCommand { get { return new RelayCommand(DeleteAttendance); } }
-        public ICommand CancelEventCommand { get { return new RelayCommand(CancelAllEvent); } }
 
         Command<object> editAttendanceCommand;
 
+        public Command ClosePopUpCommand => new Command(() =>
+        {
+            Navigation.PopPopupAsync();
+        });
         #endregion
 
-        #region Method             
-        public void CancelAllEvent()
+        #region Method         
+        public async void CancelAllEvent()
         {
             SelectionGesture = TouchGesture.Hold;
             FooterIsVisible = false;          
@@ -253,6 +258,11 @@ namespace ATS.ViewModels
                 }
             }
             SelectedItemCount = "AttendanceList";
+            if (IsEdit == 1)
+            {
+                IsEdit = 0;
+                await navigationService.Back();
+            }
         }
 
         private void AllSelectionAttendance()
@@ -273,17 +283,18 @@ namespace ATS.ViewModels
                 AllChecked = 1;
             }
             else
-            {
-                Count = 0;
+            {                
                 for (int i = 0; i < Attendances.Count; i++)
                 {
                     if (Attendances[i].IsSelected == true)
                     {
                         Attendances[i].IsSelected = false;
                         Attendances[i].IsVisiable = false;
-                        SelectedItemCount = Count.ToString() + "/" + TotalCount.ToString() + " Selected";                        
                     }
                 }
+                SelectionGesture = TouchGesture.Hold;
+                FooterIsVisible = false;
+                SelectedItemCount = "AttendanceList";
                 Count = 0;
                 AllChecked = 0;
             }
@@ -340,26 +351,38 @@ namespace ATS.ViewModels
                                 SelectedItemCount = Count.ToString() + "/" + TotalCount.ToString() + " Selected";
                             }
                         }
-                        else
-                        {
-                            if ((item as AttendanceViewModel).IsSelected == true)
-                            {
-                                if (Count >= 0)
-                                {
-                                    Count = Count - 1;
-                                    SelectedItemCount = Count.ToString() + "/" + TotalCount.ToString() + " Selected";
-                                    if (Count == 0)
-                                    {
-                                        SelectionGesture = TouchGesture.Hold;
-                                        FooterIsVisible = false;
-                                        flag = 0;
-                                        (item as AttendanceViewModel).IsSelected = false;
-                                        (item as AttendanceViewModel).IsVisiable = false;
-                                        SelectedItemCount = "AttendanceList";
-                                    }
-                                }
-                            }
-                        }
+                    //    else
+                    //    {
+                    //        if ((item as AttendanceViewModel).IsSelected == true)
+                    //        {
+                    //            if (Count >= 0)
+                    //            {
+                    //                Count = Count - 1;
+                    //                SelectedItemCount = Count.ToString() + "/" + TotalCount.ToString() + " Selected";
+                    //                if (Count == 1)
+                    //                {
+                    //                    SelectionGesture = TouchGesture.Hold;
+                    //                    FooterIsVisible = false;
+                    //                    flag = 0;
+                    //                    (item as AttendanceViewModel).IsSelected = false;
+                    //                    (item as AttendanceViewModel).IsVisiable = false;
+                    //                    SelectedItemCount = "AttendanceList";
+                    //                }
+                    //                else
+                    //                {
+                    //                    if(Count <= 1)
+                    //                    {
+                    //                        SelectionGesture = TouchGesture.Hold;
+                    //                        FooterIsVisible = false;
+                    //                        flag = 0;
+                    //                        (item as AttendanceViewModel).IsSelected = false;
+                    //                        (item as AttendanceViewModel).IsVisiable = false;
+                    //                        SelectedItemCount = "AttendanceList";
+                    //                    }
+                    //                }
+                    //            }
+                    //        }
+                    //    //}
                     }
                     for (int i = 0; i < eventArgs.RemovedItems.Count; i++)
                     {
@@ -401,21 +424,25 @@ namespace ATS.ViewModels
         {
             if (Count == 1)
             {
-                if (Attendances[0].IsSelected == true)
+                IsEdit = 1;
+                for (int i = 0; i < Attendances.Count; i++)
                 {
-                    AttendanceInfo models = null;
-                    models = new AttendanceInfo()
+                    if (Attendances[i].IsSelected == true)
                     {
-                        Id = Attendances[0].Id,
-                        AttendanceDate = Attendances[0].AttendanceDate,
-                        InTime = Attendances[0].InTime,
-                        OutTime = Attendances[0].OutTime,
-                        WorkingTime = Attendances[0].WorkingTime
-                    };
+                        AttendanceInfo models = null;
+                        models = new AttendanceInfo()
+                        {
+                            Id = Attendances[0].Id,
+                            AttendanceDate = Attendances[0].AttendanceDate,
+                            InTime = Attendances[0].InTime,
+                            OutTime = Attendances[0].OutTime,
+                            WorkingTime = Attendances[0].WorkingTime
+                        };
 
-                    if (models != null)
-                    {
-                        Navigation.PushPopupAsync(new AddAttendance(models));                
+                        if (models != null)
+                        {
+                            Navigation.PushPopupAsync(new AddAttendance(models));
+                        }
                     }
                 }
             }
@@ -526,7 +553,6 @@ namespace ATS.ViewModels
                         OutTime = attendance.OutTime,
                         AttendanceDate = attendance.AttendanceDate,
                         WorkingTime = attendance.WorkingTime,
-                        SelectedImage = ImageSource.FromResource("ATS.Images.Selected.png"),
                     });
                 }
             }

@@ -14,18 +14,18 @@ namespace ATS.Views
     {
         AttendanceInfo model = new AttendanceInfo();
         private NavigationService navigationService;
-        private AttendanceService attendanceService; 
+        private AttendanceService attendanceService;
         public AddAttendance(AttendanceInfo details)
         {
             InitializeComponent();
             navigationService = new NavigationService();
             attendanceService = new AttendanceService();
-            BindingContext = new AddAttendanceViewModel(Navigation);
+            BindingContext = new MainViewModel();
             if (details != null)
             {
                 model = details;
                 EditAttendance(model);
-            }
+            }            
         }
 
         private void EditAttendance(AttendanceInfo modelAttendance)
