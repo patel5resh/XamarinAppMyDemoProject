@@ -12,10 +12,15 @@ namespace ATS.Views
 {
 	public partial class HolidayList : ContentPage
 	{
-		public HolidayList()
+        MainViewModel mainViewModel;
+        public HolidayList()
 		{
 			InitializeComponent();
-            this.BindingContext = new HolidayViewModel();
+            mainViewModel = (MainViewModel)this.BindingContext;
+            Appearing += (object sender, EventArgs e) =>
+            {
+                mainViewModel.RefreshHolidayCommand.Execute(this);
+            };
         }
 	}
 }

@@ -91,7 +91,7 @@
                         <pulltoRefresh:SfPullToRefresh.PullableContent>
                             <StackLayout Orientation="Vertical">
                                 <StackLayout Orientation="Horizontal">
-                                    <Label FontFamily="SansProBold"
+                                    <Label FontFamily="QuicksandBold"
                                            FontSize="20"
                                            Text="Attendence"
                                            TextColor="{DynamicResource LargeLabelStyle}"/>

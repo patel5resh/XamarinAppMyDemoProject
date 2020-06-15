@@ -36,16 +36,19 @@
         <Style x:Key="LargeLabelStyle" TargetType="Label">
             <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColor}" />
             <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontFamily" Value="QuicksandRegular" />
         </Style>
 
         <Style x:Key="MediumLabelStyle" TargetType="Label">
             <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
             <Setter Property="FontSize" Value="25" />
+            <Setter Property="FontFamily" Value="QuicksandRegular" />
         </Style>
 
         <Style x:Key="SmallLabelStyle" TargetType="Label">
             <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
             <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="QuicksandRegular" />
         </Style>
 
         <Style x:Key="MainMenuIconStyle" TargetType="Label">
@@ -161,33 +164,36 @@
                             </Grid.RowDefinitions>
                             <Grid RowSpacing="0" ColumnSpacing="0">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="1"
+                                <Grid Grid.Column="0"
                                     RowSpacing="1"
-                                    Padding="15,0,0,0"
+                                    Padding="15,5,0,0"
                                     VerticalOptions="Center">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <Grid Grid.Row="0">
-                                        <Label LineBreakMode="NoWrap"
-                                            TextColor="{DynamicResource PrimaryTextColor}"
+                                        <Label TextColor="{DynamicResource PrimaryTextColor}"
                                             Text="{Binding HolidayDate, Converter={StaticResource cnvDateTimeConverter}}" 
                                             FontSize="18" />
                                     </Grid>
                                     <Grid Grid.Row="1">
-                                        <Label LineBreakMode="NoWrap"
-                                            TextColor="{DynamicResource PrimaryTextColor}"
+                                        <Label TextColor="{DynamicResource PrimaryTextColor}"
                                             Text="{Binding Description}" 
                                             FontSize="12" />
                                     </Grid>
+                                    <Grid Grid.Row="2">
+                                        <Image x:Name="selectionHolidayImage" Margin="0,0,10,0"
+                                    HeightRequest="25" WidthRequest="25" VerticalOptions="Center" 
+                                    HorizontalOptions="Center" IsVisible="{Binding IsVisiable}"
+                                    Source="{FontImage FontFamily=FontAwesome,
+                                    Glyph={x:Static helpers:IconFont.CheckboxMarkedCircle},Size=25,Color=White}"/>
+                                    </Grid>
                                 </Grid>
-                                <Frame Grid.Row="1" OutlineColor="#E4E4E4" HasShadow="True" HeightRequest="1"/>
                             </Grid>
+                            <Frame Grid.Row="1" OutlineColor="#E4E4E4" HasShadow="True" HeightRequest="1"/>
                         </Grid>
                     </yummy:PancakeView>
                 </ViewCell.View>
